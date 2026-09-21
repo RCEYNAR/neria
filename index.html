@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#12050d">
-<title>Para Cristian · 14</title>
+<title>Para Cristian · 21</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐧</text></svg>">
 <style>
   /* ============ BASE ============ */
@@ -362,6 +362,36 @@
     .hero-quote{text-align:left}
     .menu{grid-template-columns:1fr 1fr;gap:12px}
   }
+
+  /* ============ GALAXIA ============ */
+  #galaxy{background:#030102;padding:0;cursor:grab}
+  #galaxy-canvas{position:absolute;inset:0;z-index:0}
+  #galaxy-badge{position:absolute;top:3.5%;left:0;right:0;z-index:5;pointer-events:none;text-align:center;padding:0 18px}
+  #galaxy-badge .g-k{font-size:.66rem;letter-spacing:.5em;text-transform:uppercase;color:var(--dorado);font-family:'Segoe UI',Verdana,sans-serif;margin-bottom:8px}
+  #galaxy-badge .g-title{font-size:clamp(1.8rem,7vw,3rem);color:var(--warm);font-weight:300;letter-spacing:.22em;text-shadow:0 0 40px rgba(255,179,198,.55),0 0 90px rgba(255,128,159,.35)}
+  #galaxy-badge .g-sub{font-size:.78rem;color:var(--crema2);font-style:italic;margin-top:8px;letter-spacing:.06em}
+  #galaxy-crosshair{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:6px;height:6px;border-radius:50%;
+    background:rgba(255,255,255,.3);z-index:40;pointer-events:none;transition:.3s ease}
+  #galaxy-crosshair.active{background:#fff;box-shadow:0 0 18px rgba(255,179,198,.9);transform:translate(-50%,-50%) scale(2)}
+  #galaxy-card{position:absolute;top:50%;left:50%;transform:translate(-50%,-40%) scale(.95);width:86%;max-width:440px;padding:44px 36px 34px;text-align:center;
+    background:linear-gradient(135deg,rgba(30,12,20,.72),rgba(8,4,10,.92));
+    backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);
+    border:1px solid rgba(255,179,198,.32);border-radius:28px;
+    box-shadow:0 30px 70px rgba(0,0,0,.85),inset 0 0 34px rgba(255,179,198,.1);
+    z-index:60;opacity:0;pointer-events:none;transition:all .6s cubic-bezier(.165,.84,.44,1);max-height:80vh;overflow:auto}
+  #galaxy-card.active{opacity:1;pointer-events:auto;transform:translate(-50%,-50%) scale(1)}
+  #galaxy-card-icon{font-size:3.2rem;margin-bottom:14px;filter:drop-shadow(0 0 22px rgba(255,179,198,.85))}
+  #galaxy-card-title{font-family:'Segoe UI',Verdana,sans-serif;font-size:.82rem;letter-spacing:3px;text-transform:uppercase;color:#ffb3c6;margin-bottom:14px;font-weight:600}
+  #galaxy-card-text{font-size:clamp(1.4rem,4.6vw,1.7rem);line-height:1.45;color:#fff;margin-bottom:28px;text-shadow:0 2px 12px rgba(0,0,0,.55)}
+  #galaxy-card-close{background:transparent;border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.85);
+    padding:10px 30px;border-radius:30px;cursor:pointer;font-family:'Segoe UI',Verdana,sans-serif;font-size:.78rem;letter-spacing:2px;transition:.4s;font-weight:300}
+  #galaxy-card-close:hover{background:rgba(255,255,255,.06);border-color:#fff;color:#fff;box-shadow:0 0 16px rgba(255,255,255,.2)}
+  #galaxy-hint{position:absolute;bottom:4%;left:0;right:0;z-index:5;text-align:center;color:rgba(255,230,238,.75);
+    font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;font-family:'Segoe UI',Verdana,sans-serif;pointer-events:none;animation:twinkle 3s infinite}
+  #galaxy-fallback{position:absolute;inset:0;z-index:70;display:none;align-items:center;justify-content:center;text-align:center;
+    background:#0a0408;color:var(--crema2);font-style:italic;padding:26px;font-size:1.05rem;line-height:1.8}
+  #galaxy-fallback.show{display:flex}
+  #galaxy #galaxy-canvas canvas{display:block;width:100%;height:100%}
 </style>
 </head>
 <body>
@@ -382,7 +412,7 @@
 
   <!-- ============ HEROE ============ -->
   <section class="scene" id="hero">
-    <p class="kicker reveal">Una página · una historia · un 14</p>
+    <p class="kicker reveal">Una página · una historia · un 21</p>
     <h1 class="big reveal delay-1">CRISTIAN</h1>
     <p class="soft reveal delay-2" style="margin-top:10px;font-size:clamp(1.15rem,4.2vw,1.6rem);font-style:italic;color:var(--warm)">«Esta historia comienza contigo.»</p>
     <div class="hero-quote reveal delay-3">Hay personas que llegan a tu vida y, sin hacer demasiado ruido, terminan convirtiéndose en momentos que uno quiere guardar.</div>
@@ -590,7 +620,7 @@
     </div>
 
     <div class="fin-layer hide" id="fin-14">
-      <div class="gen-text">Feliz 14 <span class="final-heart" id="final-heart">❤️</span></div>
+      <div class="gen-text">Feliz 21 <span class="final-heart" id="final-heart">❤️</span></div>
       <div class="gen-sub">Gracias por ser tú.</div>
     </div>
 
@@ -598,6 +628,25 @@
       <div class="penguin-friend" data-size="big" data-hug="1"></div>
       <div class="hidden-line" id="hidden-line">El corazón siempre fue tuyo, desde la primera mirada. Cada clic, cada detalle… pensado solo para ti. 🐧❤️</div>
     </div>
+  </section>
+
+  <!-- ============ GALAXIA (FIN DEL VIAJE) ============ -->
+  <section class="scene" id="galaxy">
+    <div id="galaxy-canvas"></div>
+    <div id="galaxy-badge">
+      <p class="g-k">y si el universo guardara un lugar especial…</p>
+      <h2 class="g-title">NUESTRO UNIVERSO</h2>
+      <p class="g-sub">En mi universo también hay un espacio reservado solo para ti.</p>
+    </div>
+    <div id="galaxy-crosshair"></div>
+    <div id="galaxy-card">
+      <div id="galaxy-card-icon">✨</div>
+      <div id="galaxy-card-title">Lo que me gusta de ti</div>
+      <p id="galaxy-card-text">Mensaje</p>
+      <button id="galaxy-card-close">CERRAR</button>
+    </div>
+    <div id="galaxy-fallback">La galaxia necesita conexión a internet para encender sus estrellas. Abre la página con wifi y vuelve a mirar. ✨</div>
+    <p id="galaxy-hint">toca una luz para descubrir por qué te quiero ✨</p>
   </section>
 
 </div>
@@ -613,6 +662,263 @@
   <div class="ask" id="intro-ask">¿Quieres descubrirlo?</div>
   <button id="open-btn">Abrir <span class="spark">✨</span></button>
 </div>
+
+<!-- ============ THREE.JS (GALAXIA) ============ -->
+<script src="https://unpkg.com/three@0.128.0/build/three.min.js"></script>
+<script src="https://unpkg.com/three@0.128.0/examples/js/shaders/CopyShader.js"></script>
+<script src="https://unpkg.com/three@0.128.0/examples/js/shaders/LuminosityHighPassShader.js"></script>
+<script src="https://unpkg.com/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://unpkg.com/three@0.128.0/examples/js/postprocessing/EffectComposer.js"></script>
+<script src="https://unpkg.com/three@0.128.0/examples/js/postprocessing/MaskPass.js"></script>
+<script src="https://unpkg.com/three@0.128.0/examples/js/postprocessing/RenderPass.js"></script>
+<script src="https://unpkg.com/three@0.128.0/examples/js/postprocessing/ShaderPass.js"></script>
+<script src="https://unpkg.com/three@0.128.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
+
+<script>
+(function(){
+"use strict";
+/* ================= GALAXIA ================= */
+var galSec=document.getElementById('galaxy');
+var galCanvas=document.getElementById('galaxy-canvas');
+var galFallback=document.getElementById('galaxy-fallback');
+var galCross=document.getElementById('galaxy-crosshair');
+var galCard=document.getElementById('galaxy-card');
+var galCardOpen=false;
+var galActive=false;
+var galInited=false;
+
+function failGalaxy(msg){
+  if(galFallback){galFallback.textContent=msg||'La galaxia necesita conexión a internet para encender sus estrellas. ✨';galFallback.classList.add('show');}
+}
+
+if(typeof THREE==='undefined'){
+  failGalaxy('La galaxia necesita conexión a internet para encender sus estrellas. ✨');
+}else{
+
+var emojisPosibles=['❤️','🐧','🍗','💖','✨','🌹','🌸','🫶','💫','♡','🦋','🌷','🌟','💌','🎬','🍥'];
+var paletaColores=['#ffb3c6','#ff809f','#ffd1dc','#ffffff','#ff99b3'];
+
+var frases=[
+  "Tu sonrisa","Tu mirada profunda","Tu risa contagiosa","La calidez de tu voz","Tu inteligencia brillante",
+  "Tu sentido del humor único","Tus abrazos que curan todo","La paz infinita que me das","Tu bondad desinteresada","Tu locura divertida",
+  "Tu forma única de ver el mundo","La pasión que le pones a todo","Tu gran empatía","Tu creatividad sin límites","Tu fuerza inquebrantable",
+  "Tu ternura al hablarme","Tu paciencia conmigo","El apoyo incondicional que me brindas","La luz que irradias","Tu energía positiva",
+  "La suavidad de tus manos","Tus caricias inesperadas","Tu aroma que me encanta","Tu forma de caminar","Cómo me escuchas con atención",
+  "Cómo me hablas al oído","Cómo me haces sentir único","Tu maravillosa compañía","Tus silencios cómodos","Tu respiración cuando duermes",
+  "Tus pequeños detalles","Tus hermosas sorpresas","Tu forma tan pura de amar","Tu sinceridad total","Tu honestidad valiente",
+  "Tu lealtad absoluta","La confianza que me inspiras","Tu valentía ante los retos","Tu inmensa determinación","Tu perseverancia",
+  "Tu optimismo contagiante","Tu esperanza en el futuro","Tu fe en nosotros","Tu alegría de vivir","Tu entusiasmo por lo simple",
+  "Tu curiosidad de niño","Tu increíble imaginación","Tu maravillosa espontaneidad","Tu autenticidad","Tu hermosa originalidad",
+  "Tus grandes metas","Tus sueños más locos","Tu forma de soñar despierto","Tu forma de luchar por lo que quieres","Tu resiliencia",
+  "Tu capacidad de perdonar","Tu capacidad de aprender siempre","Tu gran sabiduría","Tu intuición perfecta","Tu hermosa sensibilidad",
+  "Cómo te emocionas por pequeñas cosas","Tus gestos tan tuyos","Tus divertidas manías","Ese lunar que tanto me gusta","Tu cabello",
+  "Tu perfil perfecto","Tu carita al dormir","Tu forma de despertar","Tu carita cuando comes algo rico","Tu forma de bailar sin pena",
+  "Tus mensajes de buenos días","Tus llamadas inesperadas","Tus sabios consejos","Tu forma de cuidarme","Tu forma de protegerme",
+  "Tu forma de animarme cuando caigo","Tu forma de consolarme","Tu facilidad para hacerme reír","Tu capacidad de hacerme pensar","Que seas exactamente tú",
+  "Cómo disfrutas una buena milanesa","Ese momento en que una película te atrapa","Cómo nos reímos con un anime eterno","Lo mucho que hace feliz a ese pingüino de peluche"
+];
+
+var interactiveData=frases.map(function(frase,i){
+  return {id:i,emoji:emojisPosibles[Math.floor(Math.random()*emojisPosibles.length)],
+    color:paletaColores[Math.floor(Math.random()*paletaColores.length)],title:frase,
+    card:"Eres la pieza que le faltaba a mi universo. "+frase+" es algo que atesoro profundamente."};
+});
+
+var container=galCanvas;
+var scene=new THREE.Scene();
+scene.fog=new THREE.FogExp2(0x030102,0.002);
+
+var camera=new THREE.PerspectiveCamera(55,window.innerWidth/window.innerHeight,0.1,2000);
+camera.position.set(0,40,120);
+
+var renderer=new THREE.WebGLRenderer({antialias:false,powerPreference:'high-performance'});
+renderer.setSize(window.innerWidth,window.innerHeight);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio,1.75));
+renderer.toneMapping=THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure=1.2;
+renderer.outputEncoding=THREE.sRGBEncoding;
+renderer.setClearColor(0x030102,1);
+container.appendChild(renderer.domElement);
+
+var controls=new THREE.OrbitControls(camera,renderer.domElement);
+controls.enableDamping=true;controls.dampingFactor=0.03;
+controls.autoRotate=true;controls.autoRotateSpeed=0.25;
+controls.maxDistance=350;controls.minDistance=25;
+controls.enablePan=false;
+
+var useComposer=false;
+try{
+  var renderScene=new THREE.RenderPass(scene,camera);
+  var bloom=new THREE.UnrealBloomPass(new THREE.Vector2(window.innerWidth,window.innerHeight),1.3,0.8,0.12);
+  var composer=new THREE.EffectComposer(renderer);
+  composer.addPass(renderScene);composer.addPass(bloom);
+  useComposer=true;
+}catch(e){useComposer=false;}
+
+var bhGeo=new THREE.SphereGeometry(12,64,64);
+var blackHole=new THREE.Mesh(bhGeo,new THREE.MeshBasicMaterial({color:0x000000}));
+scene.add(blackHole);
+
+var diskGeo=new THREE.PlaneGeometry(100,100,128,128);
+var diskMat=new THREE.ShaderMaterial({
+  uniforms:{time:{value:0},color1:{value:new THREE.Color(0xffd1dc)},color2:{value:new THREE.Color(0xff5522)}},
+  vertexShader:'varying vec2 vUv; void main(){vUv=uv; gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}',
+  fragmentShader:[
+    'uniform float time; uniform vec3 color1; uniform vec3 color2; varying vec2 vUv;',
+    'float rand(vec2 co){ return fract(sin(dot(co.xy,vec2(12.9898,78.233)))*43758.5453); }',
+    'void main(){',
+    '  vec2 p=-1.0+2.0*vUv; float r=length(p); float a=atan(p.y,p.x);',
+    '  if(r<0.25) discard;',
+    '  float f=sin(r*30.0-time*2.0+a*4.0)+sin(r*50.0-time*4.0+a*8.0)*0.5;',
+    '  vec3 col=mix(color2,color1,f*0.5+0.5);',
+    '  float glow=0.08/(r-0.2); float edgeFade=smoothstep(1.0,0.3,r);',
+    '  float alpha=edgeFade*glow*(f*0.5+0.8)+(rand(p*time*0.001)*0.1);',
+    '  gl_FragColor=vec4(col*alpha*1.5,alpha);',
+    '}'
+  ].join('\n'),
+  transparent:true,side:THREE.DoubleSide,blending:THREE.AdditiveBlending,depthWrite:false
+});
+var disk=new THREE.Mesh(diskGeo,diskMat);
+disk.rotation.x=Math.PI/2.1;
+scene.add(disk);
+
+var starGeo=new THREE.BufferGeometry();
+var starPos=new Float32Array(15000*3);
+for(var s=0;s<15000;s++){
+  var rr=25+Math.pow(Math.random(),2)*250;
+  var th=Math.random()*2*Math.PI;
+  var ph=Math.acos((Math.random()*2-1)*0.1);
+  starPos[s*3]=rr*Math.sin(ph)*Math.cos(th);
+  starPos[s*3+1]=rr*Math.cos(ph)*(Math.random()*0.6);
+  starPos[s*3+2]=rr*Math.sin(ph)*Math.sin(th);
+}
+starGeo.setAttribute('position',new THREE.BufferAttribute(starPos,3));
+var starMat=new THREE.PointsMaterial({size:0.6,color:0xffe6ea,transparent:true,blending:THREE.AdditiveBlending,depthWrite:false});
+var stars=new THREE.Points(starGeo,starMat);
+scene.add(stars);
+
+function createEmojiHologramSprite(emojiText,colorHex){
+  var canvas=document.createElement('canvas');
+  canvas.width=512;canvas.height=512;
+  var ctx=canvas.getContext('2d');
+  var grd=ctx.createRadialGradient(256,256,30,256,256,220);
+  grd.addColorStop(0,colorHex);
+  grd.addColorStop(0.5,colorHex+'66');
+  grd.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle=grd;ctx.fillRect(0,0,512,512);
+  ctx.font='150px "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif';
+  ctx.textAlign='center';ctx.textBaseline='middle';
+  ctx.shadowColor='rgba(255,255,255,.8)';ctx.shadowBlur=22;
+  ctx.fillStyle='#ffffff';
+  ctx.fillText(emojiText,256,276);
+  var texture=new THREE.CanvasTexture(canvas);
+  texture.encoding=THREE.sRGBEncoding;
+  var material=new THREE.SpriteMaterial({map:texture,transparent:true,depthWrite:false,blending:THREE.NormalBlending});
+  var sprite=new THREE.Sprite(material);
+  sprite.scale.set(16,16,1);
+  return sprite;
+}
+
+var interactiveSprites=[];
+interactiveData.forEach(function(data,index){
+  var sprite=createEmojiHologramSprite(data.emoji,data.color);
+  var angle=(index/interactiveData.length)*Math.PI*4+Math.random();
+  var distance=40+Math.random()*100;
+  var height=(Math.random()-0.5)*60;
+  sprite.position.set(Math.cos(angle)*distance,height,Math.sin(angle)*distance);
+  sprite.userData={data:data,angle:angle,distance:distance,baseY:height,speed:0.001+Math.random()*0.002,bobSpeed:1+Math.random()*2,originalScale:16};
+  scene.add(sprite);
+  interactiveSprites.push(sprite);
+});
+
+var raycaster=new THREE.Raycaster();
+var mouse=new THREE.Vector2();
+
+function onMouseMove(ev){
+  mouse.x=(ev.clientX/window.innerWidth)*2-1;
+  mouse.y=-(ev.clientY/window.innerHeight)*2+1;
+}
+window.addEventListener('mousemove',onMouseMove);
+
+container.addEventListener('click',function(ev){
+  if(galCardOpen)return;
+  mouse.x=(ev.clientX/window.innerWidth)*2-1;
+  mouse.y=-(ev.clientY/window.innerHeight)*2+1;
+  raycaster.setFromCamera(mouse,camera);
+  var hits=raycaster.intersectObjects(interactiveSprites);
+  if(hits.length>0){
+    var sprite=hits[0].object;
+    var data=sprite.userData.data;
+    sprite.scale.set(24,24,1);
+    setTimeout(function(){var os=sprite.userData.originalScale||16;sprite.scale.set(os,os,1);},300);
+    document.getElementById('galaxy-card-icon').textContent=data.emoji;
+    document.getElementById('galaxy-card-icon').style.textShadow='0 0 20px '+data.color;
+    document.getElementById('galaxy-card-title').textContent=data.title;
+    document.getElementById('galaxy-card-text').textContent=data.card;
+    galCard.classList.add('active');
+    galCardOpen=true;
+  }
+});
+document.getElementById('galaxy-card-close').addEventListener('click',function(){
+  galCard.classList.remove('active');
+  galCardOpen=false;
+});
+
+var clock=new THREE.Clock();
+function animate(){
+  requestAnimationFrame(animate);
+  if(!galActive)return;
+  var t=clock.getElapsedTime();
+  controls.update();
+  diskMat.uniforms.time.value=t;
+  stars.rotation.y=t*0.005;
+  interactiveSprites.forEach(function(sprite){
+    var ud=sprite.userData;
+    ud.angle+=ud.speed;
+    sprite.position.x=Math.cos(ud.angle)*ud.distance;
+    sprite.position.z=Math.sin(ud.angle)*ud.distance;
+    sprite.position.y=ud.baseY+Math.sin(t*ud.bobSpeed+ud.angle)*3;
+    if(sprite.scale.x<20){
+      var pulse=ud.originalScale+Math.sin(t*3+ud.angle)*1.5;
+      sprite.scale.set(pulse,pulse,1);
+    }
+  });
+  if(!galCardOpen){
+    raycaster.setFromCamera(mouse,camera);
+    var hover=raycaster.intersectObjects(interactiveSprites);
+    if(hover.length>0){galCross.classList.add('active');container.style.cursor='pointer';}
+    else{galCross.classList.remove('active');container.style.cursor='grab';}
+  }
+  try{
+    if(useComposer){composer.render();}
+    else{renderer.render(scene,camera);}
+  }catch(err){
+    useComposer=false;
+    try{renderer.render(scene,camera);}catch(e2){}
+  }
+}
+
+function resize3d(){
+  camera.aspect=window.innerWidth/window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth,window.innerHeight);
+  if(useComposer&&composer){composer.setSize(window.innerWidth,window.innerHeight);}
+}
+window.addEventListener('resize',resize3d);
+
+try{animate();galInited=true;}catch(err){failGalaxy('La galaxia no pudo encenderse esta vez. Inténtalo de nuevo. ✨');}
+
+}/* fin THREE */
+
+var galIO=new IntersectionObserver(function(en){
+  en.forEach(function(e){
+    galActive=e.isIntersecting;
+  });
+},{threshold:.05});
+galIO.observe(galSec);
+
+})();
+</script>
 
 <script>
 (function(){
@@ -888,7 +1194,7 @@ var letterTexts=[
   ['Para Cristian,',''],
   ['Decirte que esta página está hecha para ti no suena tan bonito como lo que realmente significa: cada color, ese pingüino, cada pequeño detalle… todo fue pensado pensando en ti.',''],
   ['Me gusta cómo el pollo te pone de mejor humor, cómo una película cualquiera se convierte en algo memorable a tu lado, y cómo un día normal se vuelve más cálido cuando estás.',''],
-  ['Quería hacerte algo que se sintiera solo tuyo. Y si hoy es 14, que sea un recordatorio sencillo: hay alguien que se tomó todo este tiempo únicamente para verte sonreír.',''],
+  ['Quería hacerte algo que se sintiera solo tuyo. Y si hoy es 21, que sea un recordatorio sencillo: hay alguien que se tomó todo este tiempo únicamente para verte sonreír.',''],
   ['Gracias por existir. Gracias por ser tú.',''],
   ['Con cariño,',''],
   ['— alguien que te aprecia muchísimo 🐧❤️','']
@@ -1025,7 +1331,7 @@ musicBtn.addEventListener('click',function(){
 /* ================= ESTRELLA SECRETA MÓVIL (double-tap bestia) ================= */
 document.addEventListener('dblclick',function(){});
 
-console.log('✨ Para Cristian · 14 — todo listo.');
+console.log('✨ Para Cristian · 21 — todo listo.');
 })();
 </script>
 </body>
